@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*reset rules*/
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+img{
+    max-width: 100%;
+}
+
+/*layout*/
+
+header{
+    width: 100%;
+    height: 150px;
+    background-image: url(/assets_day1/img/wall.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.table{
+    width: 100%;
+    height: auto;
+    background-image: url(/assets_day1/img/cork.png);
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    display: flex;
+}
+
+.polaroid{
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100px;
+   
+}
+    
