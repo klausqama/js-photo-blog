@@ -1,36 +1,45 @@
 const polaroidContainerDomElement = document.getElementById('polaroid-container')
-console.log(polaroidContainerDomElement)
 const overlayDisplay = document.getElementById('overlayDisplay')
-console.log(overlayDisplay)
 const buttonClose = document.getElementById('close-botton')
-const cardPolaroid = document.getElementById('cardPolaroid')
+const imgOverlay = document.querySelector('.overlay-img')
+
 
 axios
 .get('https://jsonplaceholder.typicode.com/photos?_limit=6')
 .then((res) => {
-   console.log(res.data)
-   for(let i = 0; i < res.data.length; i++){
-        console.log(res.data[i].title)
+    const photos = res.data;
+   console.log(photos)
+   for(let i = 0; i < photos.length; i++){
+        console.log(photos[i].title)
         polaroidContainerDomElement.innerHTML += `
             <div class="polaroid">
             <div class="puntina">
                 <img src="/assets_day1/img/pin.svg" alt="">
             </div>
-            <div class="img-polaroid">  <img src="${res.data[i].thumbnailUrl}" alt=""></div>
-            <p class="paragraph comic-neue-light"> ${res.data[i].title}</p>
+            <img src="${photos[i].thumbnailUrl}" alt="">
+            <p class="paragraph comic-neue-light"> ${photos[i].title}</p>
             </div>
-`   
+`       
     }
+    const cardPolaroid = document.querySelectorAll('.polaroid')
 
+    cardPolaroid.forEach((card, i) => {
+       card.addEventListener('click',() =>{
+        console.log('click sulla card')
+        overlayDisplay.style.display = 'block';
+        const { url } = photos[i];
+        imgOverlay.src = url;
+        
+       })
+    })
 
 })
 .catch((err) => {
     // qui abbiamo accesso all'errore che ha generato la chiamata
     console.log('qui ci finiamo se qualcosa è andato storto', err)
 })
-cardPolaroid.addEventListener('click', function(){
-    overlayDisplay.style.display = "block";
-});
+
 buttonClose.addEventListener('click', function(){
     overlayDisplay.style.display = "none";
 });
+
